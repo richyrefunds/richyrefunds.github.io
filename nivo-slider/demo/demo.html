@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html>
+<head>
+    <title>SLIDESHOW</title>
+    <link rel="stylesheet" href="../themes/default/default.css" type="text/css" media="screen" />    
+    <link rel="stylesheet" href="../nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+</head>
+<body>
+    <div id="wrapper"><div class="slider-wrapper theme-default">
+            
+            <div id="slider" class="nivoSlider">
+                <img src="images/simple_img_1.jpg" alt="" />
+                <img src="images/simple_img_2.jpg" alt="" />
+                <img src="images/simple_img_3.jpg" alt="" />                
+            </div>           
+        </div>
+    </div>
+    <script type="text/javascript" src="scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../jquery.nivo.slider.pack.js"></script>
+    <script type="text/javascript">
+$(window).load(function() {
+    $('#slider').nivoSlider({
+        effect:'fade', // Specify sets like: 'fold,fade,sliceDown'
+        animSpeed:500, // Slide transition speed
+        pauseTime:3000, // How long each slide will show
+        startSlide:0, // Set starting Slide (0 index)
+        directionNav:true, // Next & Prev navigation
+        directionNavHide:true, // Only show on hover
+        controlNav:true, // 1,2,3... navigation
+        controlNavThumbs:false, // Use thumbnails for Control Nav
+        controlNavThumbsFromRel:false, // Use image rel for thumbs
+        controlNavThumbsSearch: '.jpg', // Replace this with...
+        controlNavThumbsReplace: '_thumb.jpg', // ...this in thumb Image src
+        keyboardNav:true, // Use left & right arrows
+        pauseOnHover:false, // Stop animation while hovering
+        manualAdvance:false, // Force manual transitions
+        captionOpacity:0.8, // Universal caption opacity
+        prevText: 'Prev', // Prev directionNav text
+        nextText: 'Next' // Next directionNav text
+     });
+});    </script>
+</body>
+</html>
