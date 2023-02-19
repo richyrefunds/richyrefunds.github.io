@@ -1,0 +1,228 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>::RichyRefunds::About us</title>
+    <link href="Stylesheet.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="nivo-slider/themes/default/default.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="nivo-slider/nivo-slider.css" type="text/css" media="screen" />
+    <!--[if !IE]><!-->
+    <link rel="stylesheet" type="text/css" href="Stylesheet.css" />
+    <!--<![endif]-->
+</head>
+
+<body>
+    <div id="wraper">
+        <div id="header">
+            <div id="logo"> <a href="#"><img src="Images/richyrefunds3.png" border="0" /></a> </div>
+            <div id="rightmenu">
+                <div id="nav">
+                    <ul>
+                        <li><a href="index.html"><img src="Images/home_icon.png" border="0" /></a></li>
+                        <li><a href="contact-us.html" style="padding-top:3px;"><img src="Images/msg_icon.png"
+                                    border="0" /></a></li>
+                        <li><a href="sitemap.html"><img src="Images/sitmap_icon.png" border="0" /></a></li>
+                    </ul>
+                </div>
+                <div id="chticon"> <a href="#"><img src="Images/linkbuton_click.png" border="0" /></a> </div>
+            </div>
+        </div>
+        <div id="menumain">
+            <ul id="menu">
+                <li style="padding-top:8px;"><a href="index.html"><img src="Images/home_menuicon.png" border="0" /></a>
+                </li>
+                <li><img src="Images/menudiv.png" /></li>
+                <li><a href="about-us.html" class="sel">About Us</a></li>
+                <li><img src="Images/menudiv.png" /></li>
+                <li><a href="how-it-works.html">How it Works </a></li>
+                <li><img src="Images/menudiv.png" /></li>
+                <li><a href="services.html">Services </a></li>
+                <li><img src="Images/menudiv.png" /></li>
+                <li><a href="tax-planning.html">Tax Planning </a></li>
+                <li><img src="Images/menudiv.png" /></li>
+                <li><a href="why-us.html">why us</a></li>
+                <li><img src="Images/menudiv.png" /></li>
+                <li><img src="Images/menudiv.png" /></li>
+                <li><a href="contact-us.html">Contact us</a></li>
+                <li><img src="Images/menudiv.png" /></li>
+                <li><a href="payments.html" class="sel">Payments</a></li>
+            </ul>
+        </div>
+        <div id="sldshow">
+            <div id="wrapper">
+                <div class="slider-wrapper theme-default">
+                    <div id="slider" class="nivoSlider"> <img src="Images/banner1.png" alt="" /> <img
+                            src="Images/banner2.png" alt="" /> <img src="Images/banner3.png" alt="" /> </div>
+                </div>
+            </div>
+            <script type="text/javascript" src="nivo-slider/demo/scripts/jquery-1.7.1.min.js"></script>
+            <script type="text/javascript" src="nivo-slider/jquery.nivo.slider.pack.js"></script>
+            <script type="text/javascript">
+                $(window).load(function () {
+                    $('#slider').nivoSlider({
+
+                        prevText: 'Prev', // Prev directionNav text
+                        nextText: 'Next' // Next directionNav text
+                    });
+                });
+            </script>
+        </div>
+        <div id="content">
+
+            <div id="smart-button-container">
+                <div style="text-align: center"><label for="description">Tax Payer Name </label><input type="text"
+                        name="descriptionInput" id="description" maxlength="127" value=""></div>
+                <p id="descriptionError" style="visibility: hidden; color:red; text-align: center;">Please enter a
+                    description
+                </p>
+                <div style="text-align: center"><label for="amount">Fee </label><input name="amountInput" type="number"
+                        id="amount" value=""><span> USD</span></div>
+                <p id="priceLabelError" style="visibility: hidden; color:red; text-align: center;">Please enter a price
+                </p>
+                <div id="invoiceidDiv" style="text-align: center; display: none;"><label for="invoiceid"> </label><input
+                        name="invoiceid" maxlength="127" type="text" id="invoiceid" value=""></div>
+                <p id="invoiceidError" style="visibility: hidden; color:red; text-align: center;">Please enter an
+                    Invoice ID</p>
+                <div style="text-align: center; margin-top: 0.625rem;" id="paypal-button-container"></div>
+            </div>
+
+            <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD"
+                data-sdk-integration-source="button-factory"></script>
+            <script>
+                function initPayPalButton() {
+                    var description = document.querySelector('#smart-button-container #description');
+                    var amount = document.querySelector('#smart-button-container #amount');
+                    var descriptionError = document.querySelector('#smart-button-container #descriptionError');
+                    var priceError = document.querySelector('#smart-button-container #priceLabelError');
+                    var invoiceid = document.querySelector('#smart-button-container #invoiceid');
+                    var invoiceidError = document.querySelector('#smart-button-container #invoiceidError');
+                    var invoiceidDiv = document.querySelector('#smart-button-container #invoiceidDiv');
+
+                    var elArr = [description, amount];
+
+                    if (invoiceidDiv.firstChild.innerHTML.length > 1) {
+                        invoiceidDiv.style.display = "block";
+                    }
+
+                    var purchase_units = [];
+                    purchase_units[0] = {};
+                    purchase_units[0].amount = {};
+
+                    function validate(event) {
+                        return event.value.length > 0;
+                    }
+
+                    paypal.Buttons({
+                        style: {
+                            color: 'gold',
+                            shape: 'rect',
+                            label: 'paypal',
+                            layout: 'vertical',
+
+                        },
+
+                        onInit: function (data, actions) {
+                            actions.disable();
+
+                            if (invoiceidDiv.style.display === "block") {
+                                elArr.push(invoiceid);
+                            }
+
+                            elArr.forEach(function (item) {
+                                item.addEventListener('keyup', function (event) {
+                                    var result = elArr.every(validate);
+                                    if (result) {
+                                        actions.enable();
+                                    } else {
+                                        actions.disable();
+                                    }
+                                });
+                            });
+                        },
+
+                        onClick: function () {
+                            if (description.value.length < 1) {
+                                descriptionError.style.visibility = "visible";
+                            } else {
+                                descriptionError.style.visibility = "hidden";
+                            }
+
+                            if (amount.value.length < 1) {
+                                priceError.style.visibility = "visible";
+                            } else {
+                                priceError.style.visibility = "hidden";
+                            }
+
+                            if (invoiceid.value.length < 1 && invoiceidDiv.style.display === "block") {
+                                invoiceidError.style.visibility = "visible";
+                            } else {
+                                invoiceidError.style.visibility = "hidden";
+                            }
+
+                            purchase_units[0].description = description.value;
+                            purchase_units[0].amount.value = amount.value;
+
+                            if (invoiceid.value !== '') {
+                                purchase_units[0].invoice_id = invoiceid.value;
+                            }
+                        },
+
+                        createOrder: function (data, actions) {
+                            return actions.order.create({
+                                purchase_units: purchase_units,
+                            });
+                        },
+
+                        onApprove: function (data, actions) {
+                            return actions.order.capture().then(function (orderData) {
+
+                                // Full available details
+                                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+                                // Show a success message within this page, e.g.
+                                const element = document.getElementById('paypal-button-container');
+                                element.innerHTML = '';
+                                element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+                                // Or go to another URL:  actions.redirect('thank_you.html');
+
+                            });
+                        },
+
+                        onError: function (err) {
+                            console.log(err);
+                        }
+                    }).render('#paypal-button-container');
+                }
+                initPayPalButton();
+            </script>
+        </div>
+        <div class="clisrves">
+            <div class="clisrvetext">Our Clients</div>
+            <div class="cliimage"> <a href="#"><img src="Images/Income-Tax-Preparation_icon.png"
+                        border="0" /></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img
+                        src="Images/paypollogo.png" border="0" /></div>
+            <div id="fotter">
+                <div style="width:600px; float:left;"> <a href="#">Home</a> <a href="#">Quick Facts</a> <a
+                        href="#">Aboutrichyrefunds</a> <a href="#">Vision & Quality </a> <a href="#">PolicyClient</a> <a
+                        href="#">Contact Us</a> <a href="#">Sitemap</a> <br />
+                    <br />
+                    Copyrights ©
+                    <script>document.write(new Date().getFullYear());</script> richyrefunds.com ® All Rights Reserved.
+                </div>
+                <div id="foternav">
+                    <ul>
+                        <li><a href="#"><img src="Images/facebook_icon.png" border="0" /></a></li>
+                        <li><a href="#"><img src="Images/twit_icon.png" border="0" /></a></li>
+                        <li><a href="#"><img src="Images/stum_icon.png" border="0" /></a></li>
+                        <li><a href="#"><img src="Images/quck_icon.png" border="0" /></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
